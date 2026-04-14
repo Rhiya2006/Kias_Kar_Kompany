@@ -12,6 +12,7 @@ namespace Kias_Kar_Kompany.Models
 
         public string? Manufacturer_Country { get; set; }
 
+        //nav - one manufacturer can have many vehicles
         public List<Vehicle>? Vehicles { get; set; }
 
     }
