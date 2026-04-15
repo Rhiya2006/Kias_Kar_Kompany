@@ -16,7 +16,7 @@ namespace Kias_Kar_Kompany.Models
 
 
 
-        //owner can own a vehicle
+        //nav property, owner can own a vehicle
         public List<Vehicle>? Vehicles { get; set; }
 
     }
