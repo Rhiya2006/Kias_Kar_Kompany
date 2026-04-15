@@ -3,6 +3,7 @@ using Kias_Kar_Kompany.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kias_Kar_Kompany.Migrations
 {
     [DbContext(typeof(Kias_Kar_KompanyContext))]
-    partial class Kias_Kar_KompanyContextModelSnapshot : ModelSnapshot
+    [Migration("20260414085740_Fixed")]
+    partial class Fixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,10 +78,10 @@ namespace Kias_Kar_Kompany.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VehicleId"));
 
-                    b.Property<int>("ManufacturerId")
+                    b.Property<int?>("ManufacturerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OwnerId")
+                    b.Property<int?>("OwnerId")
                         .HasColumnType("int");
 
                     b.Property<string>("VehicleImageURL")
@@ -112,15 +115,11 @@ namespace Kias_Kar_Kompany.Migrations
                 {
                     b.HasOne("Kias_Kar_Kompany.Models.Manufacturer", "Manufacturer")
                         .WithMany("Vehicles")
-                        .HasForeignKey("ManufacturerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ManufacturerId");
 
                     b.HasOne("Kias_Kar_Kompany.Models.Owner", "Owner")
                         .WithMany("Vehicles")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OwnerId");
 
                     b.Navigation("Manufacturer");
 
